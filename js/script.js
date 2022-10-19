@@ -38,7 +38,7 @@ function creaAreaGioco(){
     const campoGioco = document.getElementById('numeri-gioco');
     campoGioco.innerHTML = `
         <section id="game" class="d-flex flex-column">
-            <div>
+            <div id="input-numeri">
                 <input type="number" id="numero1" class="campo-input form-control-lg" min="1" max="99">
                 <input type="number" id="numero2" class="campo-input form-control-lg" min="1" max="99">
                 <input type="number" id="numero3" class="campo-input form-control-lg" min="1" max="99">
@@ -99,4 +99,14 @@ function risultato(){
         divRisultato.innerText = `Hai ricordato ${numeriInclusi.length} numeri, eccoli: ${numeriInclusi}
         Il tuo punteggio è di ${score} ... freé mandrake!`;
     }
+
+    // const removeButton = document.getElementById('start-game');
+    // removeButton.remove();
+    const buttonRestart = document.getElementById('start-game');
+    buttonRestart.classList.remove('btn-primary');
+    buttonRestart.classList.add('btn-warning');
+    buttonRestart.innerText = 'Prova di nuovo';
+    buttonRestart.removeEventListener('click', inputNumeri);
+    buttonRestart.removeEventListener('click', risultato);
+    buttonRestart.addEventListener('click', () => location.reload());
 }
