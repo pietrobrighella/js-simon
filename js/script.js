@@ -22,8 +22,7 @@ while(numeri.length < numeroDiNumeri){
     }
 }
 
-console.log(numeriInseriti)
-
+console.log(numeriInseriti, ' ', numeri)
 
 /***** FUNZIONI *****/
 function stampaNumeri(numero){
@@ -73,7 +72,31 @@ function inputNumeri(){
 function risultato(){
     const gameHtml = document.getElementById('game');
     const divRisultato = document.createElement('div');
-    divRisultato.classList.add('alert', 'alert-primary');
+    divRisultato.classList.add('alert');
     gameHtml.prepend(divRisultato);
-    divRisultato.innerText = 'risultato di gioco'
+
+    score = 0;
+    numeriInclusi = [];
+    for(let i = 0; i < numeri.length; i++) {
+        if(numeri.includes(numeriInseriti[i])){
+            numeriInclusi.push(numeriInseriti[i]);
+            score += 10;
+        }
+    } 
+
+    console.log(numeriInclusi);
+
+    if (score <= 20){
+        divRisultato.classList.add('alert-danger');
+        divRisultato.innerText = `Hai ricordato ${numeriInclusi.length} numeri, eccoli: ${numeriInclusi}
+        Il tuo punteggio è di ${score} ... sì proprio nà chiavica!`;
+    } else if (score > 20 && score < 50){
+        divRisultato.classList.add('alert-warning');
+        divRisultato.innerText = `Hai ricordato ${numeriInclusi.length} numeri, eccoli: ${numeriInclusi}
+        Il tuo punteggio è di ${score} ... 'mpegnati n'anzì!`;
+    } else {
+        divRisultato.classList.add('alert-success');
+        divRisultato.innerText = `Hai ricordato ${numeriInclusi.length} numeri, eccoli: ${numeriInclusi}
+        Il tuo punteggio è di ${score} ... freé mandrake!`;
+    }
 }
